@@ -2,6 +2,10 @@
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use backend\assets\EditablePageAsset;
+
+if ($dataProvider->count == 0)
+    EditablePageAsset::register($this);
 
 ?>
 <br>
