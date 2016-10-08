@@ -5,6 +5,7 @@
 
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -59,8 +60,13 @@ AppAsset::register($this);
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.html">Авторизация</a></li>
-                        <li><a href="signup.html">Регистрация</a></li>
+                        <?if (Yii::$app->user->isGuest):?>
+                            <li><a href="<?=Url::to(['/user/security/login'])?>">Авторизация</a></li>
+                            <li><a href="<?=Url::to(['/user/registration/register'])?>">Регистрация</a></li>
+                        <?else:?>
+                            <li><a href="<?=Url::to(['/user/settings/profile'])?>"><?=Yii::$app->user->identity->username?></a></li>
+                            <li><a href="<?=Url::to(['/user/security/logout'])?>" data-method="post">Выйти</a></li>
+                        <?endif;?>
                         <li class="postadd">
                             <a class="btn btn-block   btn-border btn-post btn-danger" href="post-ads.html">Подать объявление</a>
                         </li>

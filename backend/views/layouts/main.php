@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use backend\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\Url;
 use common\widgets\Alert;
 
 AppAsset::register($this);
@@ -46,9 +47,11 @@ AppAsset::register($this);
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
             <li>
-                <a href="#" onclick="$('#lg-form').submit(); return false;"><i class="fa fa-fw fa-sign-out"></i>Выход</a>
-                <?=Html::beginForm(['/site/logout'], 'post', ['id' => 'lg-form'])?>
-                <?=Html::endForm()?>
+                <?if (!Yii::$app->user->isGuest):?>
+                    <a href="#" onclick="$('#lg-form').submit(); return false;"><i class="fa fa-fw fa-sign-out"></i>Выход</a>
+                    <?=Html::beginForm(['/user/security/logout'], 'post', ['id' => 'lg-form'])?>
+                    <?=Html::endForm()?>
+                <?endif;?>
             </li>
         </ul>
       </div>
@@ -66,7 +69,11 @@ AppAsset::register($this);
             'items' => [
                 [
                     'label' => '<i class="fa fa-cubes"></i> <span>Категории</span>',
-                    'url' => ['category/index']
+                    'url' => ['/category/index']
+                ],
+                [
+                    'label' => '<i class="fa fa-users"></i> <span>Пользователи</span>',
+                    'url' => ['/user/admin/index']
                 ],
             ],
             'encodeLabels' => false
