@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
+use frontend\components\UserPanel\UserPanelWidget;
 
 AppAsset::register($this);
 ?>
@@ -37,7 +38,7 @@ AppAsset::register($this);
             elements: true
         };
     </script>
-    <script src="theme/assets/js/pace.min.js"></script>
+    <script src="/theme/assets/js/pace.min.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -55,22 +56,11 @@ AppAsset::register($this);
                     <a href="/" class="navbar-brand logo logo-title">
                         <!-- Original Logo will be placed here  -->
                         <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo shape-0"></i> </span>
-                        TAGERA<span>.RU</span>
+                        VSE<b style="color:#16a085">HALAL</b><span>.RU</span>
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <?if (Yii::$app->user->isGuest):?>
-                            <li><a href="<?=Url::to(['/user/security/login'])?>">Авторизация</a></li>
-                            <li><a href="<?=Url::to(['/user/registration/register'])?>">Регистрация</a></li>
-                        <?else:?>
-                            <li><a href="<?=Url::to(['/user/settings/profile'])?>"><?=Yii::$app->user->identity->username?></a></li>
-                            <li><a href="<?=Url::to(['/user/security/logout'])?>" data-method="post">Выйти</a></li>
-                        <?endif;?>
-                        <li class="postadd">
-                            <a class="btn btn-block   btn-border btn-post btn-danger" href="post-ads.html">Подать объявление</a>
-                        </li>
-                    </ul>
+                    <?=UserPanelWidget::widget()?>
                 </div>
                 <!--/.nav-collapse -->
             </div>

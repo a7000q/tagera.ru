@@ -26,6 +26,9 @@ return [
             'controllerMap' => [
                 'security' => 'backend\controllers\user\SecurityController'
             ],
+            'modelMap' => [
+                'User' => 'backend\models\user\User',
+            ],
         ]
     ],
     'defaultRoute' => 'category',
@@ -41,7 +44,7 @@ return [
                 'name'     => '_backendIdentity',
                 'path'     => '/',
                 'httpOnly' => true,
-            ]
+            ],
         ],
         'session' => [
             'name' => 'BACKENDSESSID',

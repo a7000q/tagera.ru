@@ -15,6 +15,13 @@ return [
         'user' => [
             // following line will restrict access to admin controller from frontend application
             'as frontend' => 'dektrium\user\filters\FrontendFilter',
+            'controllerMap' => [
+                'settings' => 'frontend\controllers\user\SettingsController',
+            ],
+            'modelMap' => [
+                'User' => 'frontend\models\user\User',
+                'Profile' => 'frontend\models\user\Profile'
+            ],
         ],
     ],
     'components' => [

@@ -18,7 +18,7 @@ class AppAsset extends AssetBundle
         'theme/assets/css/owl.theme.css'
     ];
     public $js = [
-        'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
+        //'https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js',
         'theme/assets/bootstrap/js/bootstrap.min.js',
         'theme/assets/js/owl.carousel.min.js',
         'theme/assets/js/jquery.matchHeight-min.js',
