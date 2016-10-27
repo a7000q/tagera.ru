@@ -21,7 +21,7 @@ return [
             'modelMap' => [
                 'User' => 'frontend\models\user\User',
                 'Profile' => 'frontend\models\user\Profile',
-                'RegistrationForm' => 'frontend\models\user\RegistrationForm'
+                'RegistrationForm' => 'frontend\models\user\register\RegistrationForm'
             ],
         ],
     ],

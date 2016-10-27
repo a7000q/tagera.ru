@@ -1,9 +1,10 @@
 <?php
 
-namespace frontend\models\user;
+namespace frontend\models\user\register;
 
+use dektrium\user\models\User;
+use dektrium\user\models\Profile;
 use yii\helpers\ArrayHelper;
-
 
 class RegistrationForm extends \dektrium\user\models\RegistrationForm
 {
@@ -44,7 +45,7 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
             'username' => $this->username,
             'password' => $this->password,
         ]);
-        /** @var Profile $profile */
+
         $profile = \Yii::createObject(Profile::className());
         $profile->setAttributes([
             'name' => $this->name,
