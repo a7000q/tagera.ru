@@ -26,6 +26,12 @@ return [
         ],
     ],
     'components' => [
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LfZswoUAAAAALpMaBml8eOrB5PgpcKdFR40G3kQ',
+            'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz',
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
