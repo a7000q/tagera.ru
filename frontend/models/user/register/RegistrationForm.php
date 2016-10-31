@@ -21,7 +21,7 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
             [['name', 'site'], 'string'],
             ['info', 'string'],
             ['city', 'integer'],
-            [['reCaptcha'], 'required']
+            [['reCaptcha'], 'required', 'message' => 'Необходимо пройти каптчу']
         ]);
     }
 
@@ -32,7 +32,8 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
             'name' => 'Имя',
             'site' => 'Сайт',
             'city' => 'Город',
-            'info' => 'О себе'
+            'info' => 'О себе',
+            'reCaptcha' => 'Каптча'
         ]);
     }
 
