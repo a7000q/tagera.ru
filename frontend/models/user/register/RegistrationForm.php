@@ -13,6 +13,7 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
     public $site;
     public $city;
     public $info;
+    public $reCaptcha;
 
     public function rules()
     {
@@ -20,7 +21,7 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
             [['name', 'site'], 'string'],
             ['info', 'string'],
             ['city', 'integer'],
-            [[], ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz']
+            [['reCaptcha'], 'required']
         ]);
     }
 
