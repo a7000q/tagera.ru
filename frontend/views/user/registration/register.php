@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($model, 'password')->passwordInput() ?>
                             <?php endif ?>
 
-                            <?= $form->field($model, 'reCaptcha')->widget(
+                            <?= $form->field($model, 'reCaptcha', ['template' => '{input}'])->widget(
                                 \himiklab\yii2\recaptcha\ReCaptcha::className(),
                                 ['siteKey' => '6LfZswoUAAAAALpMaBml8eOrB5PgpcKdFR40G3kQ']
                             ) ?>
