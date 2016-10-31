@@ -4,6 +4,7 @@ namespace frontend\models\user\register;
 
 use dektrium\user\models\User;
 use dektrium\user\models\Profile;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use yii\helpers\ArrayHelper;
 
 class RegistrationForm extends \dektrium\user\models\RegistrationForm
@@ -12,13 +13,12 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
     public $site;
     public $city;
     public $info;
-    public $reCaptha;
+    public $reCaptcha;
 
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['reCaptha'], 'required'],
-            [['reCaptha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
+            [['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
             [['name', 'site'], 'string'],
             ['info', 'string'],
             ['city', 'integer']

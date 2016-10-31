@@ -65,10 +65,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($model, 'password')->passwordInput() ?>
                             <?php endif ?>
 
-                            <?= $form->field($model, 'reCaptcha')->widget(
-                                \himiklab\yii2\recaptcha\ReCaptcha::className(),
-                                ['siteKey' => '6LfZswoUAAAAALpMaBml8eOrB5PgpcKdFR40G3kQ']
-                            ) ?>
+                            <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className(),  [
+                                'siteKey' => '6LfZswoUAAAAALpMaBml8eOrB5PgpcKdFR40G3kQ'
+                            ]) ?>
 
                             <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
 
