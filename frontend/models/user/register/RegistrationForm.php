@@ -12,11 +12,13 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
     public $site;
     public $city;
     public $info;
+    public $reCaptha;
 
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [[], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
+            [['reCaptha'], 'required'],
+            [['reCaptha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
             [['name', 'site'], 'string'],
             ['info', 'string'],
             ['city', 'integer']
