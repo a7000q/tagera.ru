@@ -11,7 +11,6 @@
 
 use yii\helpers\Html;
 use kartik\form\ActiveForm;
-use yii\captcha\Captcha;
 
 /**
  * @var yii\web\View              $this
