@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 
 class RegistrationForm extends \dektrium\user\models\RegistrationForm
 {
-    public $captcha;
+    public $reCaptcha;
     public $name;
     public $site;
     public $city;
@@ -18,7 +18,7 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
     {
         return ArrayHelper::merge(parent::rules(), [
             ['captcha', 'required'],
-            ['captcha', \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
+            ['reCaptcha', \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
             [['name', 'site'], 'string'],
             ['info', 'string'],
             ['city', 'integer']
