@@ -18,10 +18,10 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz'],
             [['name', 'site'], 'string'],
             ['info', 'string'],
-            ['city', 'integer']
+            ['city', 'integer'],
+            [['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfZswoUAAAAAHIT-Zz8pzqcf4NngFIi2G3S35pz']
         ]);
     }
 
