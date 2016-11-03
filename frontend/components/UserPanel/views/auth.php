@@ -21,6 +21,6 @@ use yii\helpers\Url;
         </li>
     <?endif;?>
     <li class="postadd">
-        <a class="btn btn-block   btn-border btn-post btn-danger" href="post-ads.html">Подать объявление</a>
+        <a class="btn btn-block   btn-border btn-post btn-danger" href="<?=Url::toRoute(['/ads/add'])?>">Подать объявление</a>
     </li>
 </ul>

@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'user' => [
@@ -82,6 +83,15 @@ return [
                     'clientId'     => '5659226',
                     'clientSecret' => 'J6IyUl9B6hwuUJK8LB6v',
                 ]
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                'file-input*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@vendor/2amigos/yii2-file-input-widget/src/messages',
+                    'sourceLanguage' => 'ru'
+                ],
             ],
         ],
     ],

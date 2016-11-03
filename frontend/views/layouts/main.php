@@ -43,7 +43,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-
+<img id="loading" src="/img/loading.gif" tabindex="-2">
 <div id="wrapper">
     <div class="header">
         <nav class="navbar   navbar-site navbar-default" role="navigation">
