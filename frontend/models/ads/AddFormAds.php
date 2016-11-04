@@ -3,11 +3,15 @@
 namespace frontend\models\ads;
 
 
+
 use frontend\models\user\User;
 use yii\base\Model;
 use frontend\models\category\Category;
 use yii\helpers\ArrayHelper;
 use Yii;
+use frontend\models\ads\Ads;
+use frontend\models\files\Files;
+
 
 class AddFormAds extends Model
 {
@@ -71,7 +75,7 @@ class AddFormAds extends Model
             [['name', 'description', 'username', 'phone'], 'string'],
             [['name', 'username', 'phone', 'city', 'id_category'], 'required'],
             [['price'], 'number'],
-            [['image1', 'image2', 'image3', 'image4', 'image5', 'image6'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg']
+            [['image1', 'image2', 'image3', 'image4', 'image5', 'image6'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg']
         ];
     }
 
@@ -177,7 +181,97 @@ class AddFormAds extends Model
 
     public function saveProduct()
     {
+        $product = \Yii::createObject(Ads::className());
+        
+        $product->setAttributes([
+            'name' => $this->name,
+            'description' => $this->description,
+            'id_user' => Yii::$app->user->id,
+            'id_category' => $this->id_category,
+            'date' => time(),
+            'price' => $this->price,
+            'username' => $this->username,
+            'phone' => $this->phone,
+            'id_city' => $this->city
+        ]);
 
+        $product->save();
+        
+        if ($this->fields)
+            foreach ($this->fields as $id_field => $value)
+            {
+                if ($value != "")
+                {
+
+                    if (!is_array($value)) {
+                        $field = Yii::createObject(AdsFields::className());
+                        $field->setAttributes([
+                            'id_product' => $product->id,
+                            'id_field' => $id_field,
+                            'value' => $value
+                        ]);
+
+                        $field->save();
+                    } else {
+                        foreach ($value as $val) {
+                            $field = Yii::createObject(AdsFields::className());
+                            $field->setAttributes([
+                                'id_product' => $product->id,
+                                'id_field' => $id_field,
+                                'value' => $val
+                            ]);
+
+                            $field->save();
+                        }
+                    }
+
+                }
+            }
+
+        $this->saveImages($product->id);
+    }
+
+    private function saveImages($id_product)
+    {
+        if ($this->image1)
+            $this->saveImage($id_product, $this->image1);
+
+        if ($this->image2)
+            $this->saveImage($id_product, $this->image2);
+
+        if ($this->image3)
+            $this->saveImage($id_product, $this->image3);
+
+        if ($this->image4)
+            $this->saveImage($id_product, $this->image4);
+
+        if ($this->image5)
+            $this->saveImage($id_product, $this->image5);
+
+        if ($this->image6)
+            $this->saveImage($id_product, $this->image6);
+    }
+
+    private function saveImage($id_product, $image)
+    {
+        $dir = "files/products/".$id_product;
+        if (!is_dir($dir))
+            mkdir($dir, 0777);
+
+        $src = $dir."/".$id_product.$image->baseName.time().".".$image->extension;
+        $image->saveAs($src);
+        
+        $file = new Files(['src' => $src]);
+        $file->save();
+        
+        $product_image = Yii::createObject(AdsImages::className());
+        $product_image->setAttributes([
+            'id_product' => $id_product,
+            'id_file' => $file->id,
+            'date' => time()
+        ]);
+
+        $product_image->save();
     }
 
 }

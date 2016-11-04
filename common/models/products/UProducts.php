@@ -3,6 +3,9 @@
 namespace common\models\products;
 
 use Yii;
+use common\models\category\SCategory;
+use common\models\user\User;
+use common\models\geo\City;
 
 /**
  * This is the model class for table "u_products".
@@ -33,10 +36,11 @@ class UProducts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'id_category', 'date'], 'integer'],
-            [['name', 'description'], 'string', 'max' => 255],
+            [['id_user', 'id_category', 'date', 'id_city'], 'integer'],
+            [['name', 'description', 'username', 'phone'], 'string', 'max' => 255],
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => SCategory::className(), 'targetAttribute' => ['id_category' => 'id']],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
+            [['price'], 'number'],
         ];
     }
 
@@ -69,5 +73,10 @@ class UProducts extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(City::className(), ['id' => 'id_city']);
     }
 }

@@ -52,7 +52,7 @@ class AdsController extends Controller
             if (isset($post['save-btn']) && $model->validate())
             {
                 $model->saveProduct();
-                $this->redirect(['settings/ads']);
+                return $this->renderPartial('success');
             }
 
         }

@@ -3,6 +3,7 @@
 namespace common\models\products;
 
 use Yii;
+use common\models\category\SPropertyField;
 
 /**
  * This is the model class for table "u_product_fields".

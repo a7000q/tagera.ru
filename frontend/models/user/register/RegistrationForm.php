@@ -53,6 +53,8 @@ class RegistrationForm extends \dektrium\user\models\RegistrationForm
             'id_city' => $this->city,
             'bio' => $this->info
         ]);
+        
         $user->setProfile($profile);
+
     }
 }
