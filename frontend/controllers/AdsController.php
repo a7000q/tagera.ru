@@ -8,6 +8,7 @@ use yii\base\Controller;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
+use Yii;
 
 class AdsController extends Controller
 {
