@@ -5,9 +5,8 @@ namespace frontend\controllers;
 use frontend\models\ads\AddFormAds;
 use frontend\models\category\Category;
 use yii\base\Controller;
-use Yii;
-use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
 class AdsController extends Controller
@@ -52,7 +51,7 @@ class AdsController extends Controller
             if (isset($post['save-btn']) && $model->validate())
             {
                 $model->saveProduct();
-                return $this->renderPartial('success');
+                return $this->render('success');
             }
 
         }

@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
+use kartik\helpers\Html;
+
 
 /**
  * @var $this  yii\web\View

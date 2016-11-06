@@ -1,14 +1,18 @@
 <?
+use dosamigos\fileinput\FileInput;
 use kartik\form\ActiveForm;
 use kartik\helpers\Html;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
-use dosamigos\fileinput\FileInput;
-
 $this->title = "Новое объявление";
+
 ?>
+<div id="domMessage" style="display:none;">
+    <h1><img src="/img/loading.gif"> Сабр!</h1>
+</div>
+
 <div class="row">
     <div class="col-md-9 page-content">
         <div class="inner-box category-content">
@@ -134,7 +138,7 @@ $this->title = "Новое объявление";
 
                                     <div class="col-md-8">
                                         <input type="submit" name="ajax" hidden>
-                                        <?= Html::submitInput("Добавить", ['class' => 'btn btn-success btn-block', 'name' => 'save-btn', 'data-pjax' => "false"]) ?>
+                                        <?= Html::submitInput("Добавить", ['class' => 'btn btn-success btn-block', 'name' => 'save-btn']) ?>
 
                                     </div>
                                 </div>

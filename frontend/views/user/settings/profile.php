@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-use yii\helpers\Html;
+
+use kartik\form\ActiveForm;
+use kartik\helpers\Html;
 
 /**
  * @var yii\web\View $this
@@ -33,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="welcome-msg">
                 <h3 class="page-sub-header2 clearfix no-padding">Ассаляму алейкум ва рахматуллахи ва баракатуху, <?=Yii::$app->user->identity->mainUsername?>! </h3>
             </div>
-            <?php $form = \yii\widgets\ActiveForm::begin([
+            <?php $form = ActiveForm::begin([
                 'id' => 'profile-form',
                 'options' => ['class' => 'form-horizontal'],
                 'fieldConfig' => [
@@ -64,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
-            <?php \yii\widgets\ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>

@@ -66,3 +66,9 @@ function changeCategory(id_category) {
     $('#category-modal').modal("toggle");
 }
 
+$(document).ajaxStart(function () {
+    $.blockUI({ message: $('#domMessage') });
+});
+
+$(document).ajaxStop($.unblockUI);
+

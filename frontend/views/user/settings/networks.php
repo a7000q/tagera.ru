@@ -10,7 +10,8 @@
  */
 
 use dektrium\user\widgets\Connect;
-use yii\helpers\Html;
+use kartik\form\ActiveForm;
+use kartik\helpers\Html;
 
 /*
  * @var yii\web\View $this

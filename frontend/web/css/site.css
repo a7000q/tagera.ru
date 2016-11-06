@@ -6,16 +6,5 @@
 
 #loading
 {
-    width: 150px;
-    height: 150px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-
-    margin-left: -15px;
-    margin-top: -15px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 1050;
     display: none;
 }

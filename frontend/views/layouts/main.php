@@ -3,10 +3,10 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use yii\helpers\Html;
 use frontend\assets\AppAsset;
-use yii\helpers\Url;
 use frontend\components\UserPanel\UserPanelWidget;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -42,8 +42,6 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<img id="loading" src="/img/loading.gif" tabindex="-2">
 <div id="wrapper">
     <div class="header">
         <nav class="navbar   navbar-site navbar-default" role="navigation">
