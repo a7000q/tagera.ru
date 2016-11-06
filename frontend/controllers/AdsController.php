@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 use Yii;
 
+
 class AdsController extends Controller
 {
     public function behaviors()
