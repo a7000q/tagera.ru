@@ -1,3 +1,6 @@
+<?
+    $this->title = "Новое объявление";
+?>
 <div class="col-md-12 page-content">
     <div class="inner-box category-content">
         <div class="row">
