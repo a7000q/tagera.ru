@@ -229,6 +229,9 @@ class AddFormAds extends Model
             }
 
         $this->saveImages($product->id);
+
+        $product->setUncheked();
+        $this->sendAdminMessage($product);
     }
 
     private function saveImages($id_product)
@@ -272,6 +275,15 @@ class AddFormAds extends Model
         ]);
 
         $product_image->save();
+    }
+
+    private function sendAdminMessage(Ads $product)
+    {
+        $message = Yii::$app->mailer->compose('mail/admin', ['product' => $product]);
+        $message->setFrom('rail555@yandex.ru');
+        $message->setTo("a7000q@gmail.com");
+        $message->setSubject("Новое объявление");
+        $message->send();
     }
 
 }
