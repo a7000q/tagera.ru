@@ -15,6 +15,6 @@
 <div>
     <b>Фото: </b><br>
     <?foreach ($product->images as $image):?>
-        <img src="<?=Yii::getAlias("frontendWeb")?>/<?=$image->image->src?>">
+        <img src="<?=Yii::getAlias("@frontendWeb")?>/<?=$image->image->src?>">
     <?endforeach;?>
 </div>
