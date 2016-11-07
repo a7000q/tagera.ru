@@ -49,7 +49,7 @@ class UProductsUnchecked extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdProduct()
+    public function getProduct()
     {
         return $this->hasOne(UProducts::className(), ['id' => 'id_product']);
     }
