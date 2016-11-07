@@ -282,7 +282,7 @@ class AddFormAds extends Model
         $message = Yii::$app->mailer->compose('add-form/admin', ['product' => $product]);
         $message->setFrom('rail555@yandex.ru');
         $message->setTo("a7000q@gmail.com");
-        $message->setSubject("Новое объявление");
+        $message->setSubject("new объявление");
         $message->send();
     }
 
