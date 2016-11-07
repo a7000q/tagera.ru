@@ -8,13 +8,13 @@
     <b>Поля: </b><br>
     <ul>
         <?foreach ($product->fields as $field):?>
-            <li><b><?=$field->field->name?></b><?=$field->visibleValue?></li>
+            <li><b><?=$field->field->name?></b> <?=$field->visibleValue?></li>
         <?endforeach;?>
     </ul>
 </div>
 <div>
     <b>Фото: </b><br>
     <?foreach ($product->images as $image):?>
-        <img src="<?=$image->image->src?>">
+        <img src="<?=Yii::getAlias("frontendWeb")?>/<?=$image->image->src?>">
     <?endforeach;?>
 </div>
