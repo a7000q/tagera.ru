@@ -54,7 +54,7 @@ class UProductImages extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdFile()
+    public function getFile()
     {
         return $this->hasOne(UFiles::className(), ['id' => 'id_file']);
     }
@@ -65,5 +65,15 @@ class UProductImages extends \yii\db\ActiveRecord
     public function getIdProduct()
     {
         return $this->hasOne(UProducts::className(), ['id' => 'id_product']);
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            $this->file->delete();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

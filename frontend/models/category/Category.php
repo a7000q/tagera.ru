@@ -38,4 +38,37 @@ class Category extends SCategory
     {
         return $this->hasOne(Category::className(), ['id' => 'id_parent']);
     }
+
+    public function getFullName()
+    {
+        $category_chain = $this->getCategoryChain();
+        $result = "";
+        foreach ($category_chain as $id_category)
+        {
+            $category = Category::findOne($id_category);
+            if ($result == "")
+                $result = $category->name;
+            else
+                $result .= " / ".$category->name;
+        }
+
+        return $result;
+    }
+
+    private function getCategoryChain()
+    {
+        $category = $this;
+
+        while ($category->parent)
+        {
+            $result[] = $category->id;
+            $category = $category->parent;
+        }
+
+        $result[] = $category->id;
+
+        $result = array_reverse($result);
+
+        return $result;
+    }
 }

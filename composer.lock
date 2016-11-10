@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "376e29e9dfb5c2c536635d0aab50c9d6",
-    "content-hash": "990c7011bd290edc6b18251b9f046beb",
+    "hash": "e5ee019534dfb80c11d36b6cc7bd72e3",
+    "content-hash": "47a536c0cdd75e2a570e9f73c53acd37",
     "packages": [
         {
             "name": "2amigos/yii2-file-input-widget",
@@ -991,12 +991,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "448db13904dad68153ef466bbc905b916a2a5900"
+                "reference": "ff39cb3340510b5634f27108727f82c6ce9fb242"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/448db13904dad68153ef466bbc905b916a2a5900",
-                "reference": "448db13904dad68153ef466bbc905b916a2a5900",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/ff39cb3340510b5634f27108727f82c6ce9fb242",
+                "reference": "ff39cb3340510b5634f27108727f82c6ce9fb242",
                 "shasum": ""
             },
             "require": {
@@ -1033,7 +1033,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-10-22 16:52:42"
+            "time": "2016-11-05 15:33:03"
         },
         {
             "name": "kartik-v/yii2-helpers",

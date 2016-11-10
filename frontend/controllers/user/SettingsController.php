@@ -3,6 +3,10 @@
 namespace frontend\controllers\user;
 
 
+use frontend\models\ads\Ads;
+use Yii;
+use yii\data\ActiveDataProvider;
+
 class SettingsController extends \dektrium\user\controllers\SettingsController
 {
     public function behaviors()
@@ -20,6 +24,12 @@ class SettingsController extends \dektrium\user\controllers\SettingsController
 
     public function actionAds()
     {
-        return 123;
+        $ads = Ads::find()->where(['id_user' => Yii::$app->user->id]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $ads
+        ]);
+        return $this->render('ads', ['dataProvider' => $dataProvider]);
     }
+
+
 }

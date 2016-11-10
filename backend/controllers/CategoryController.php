@@ -12,6 +12,8 @@ use yii\helpers\ArrayHelper;
 use kartik\grid\EditableColumnAction;
 use yii\helpers\Json;
 use yii\helpers\Html;
+use yii\web\UploadedFile;
+use backend\models\category\CategoryImage;
 
 class CategoryController extends CController
 {
@@ -81,6 +83,14 @@ class CategoryController extends CController
 
         if ($model->load($post) && $model->save()) 
             Yii::$app->session->setFlash('kv-detail-success', 'Запись сохранена');
+
+        if (isset($post['add-photo']))
+        {
+            $model->imageFile = UploadedFile::getInstance($model, "imageFile");
+            $model->saveImageFile();
+
+            return $this->renderAjax('photo', ['model' => $model]);
+        }
         
         return $this->render('view', ['model' => $model]);
     }
@@ -172,6 +182,19 @@ class CategoryController extends CController
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionDelImage()
+    {
+        $post = Yii::$app->request->post();
+        $id = ArrayHelper::getValue($post, 'id');
+        $image = CategoryImage::findOne($id);
+
+        if ($image)
+        {
+            $image->delete();
+            return "success";
         }
     }
 }

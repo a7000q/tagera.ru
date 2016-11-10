@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\category\Category;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -21,6 +22,9 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+
+    public $layout = "main-index";
+
     public function behaviors()
     {
         return [
@@ -71,7 +75,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $categoryes = Category::find()->where(['id_parent' => null])->all();
+
+        return $this->render('index', ['categoryes' => $categoryes]);
     }
 
     /**

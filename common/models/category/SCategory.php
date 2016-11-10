@@ -77,4 +77,9 @@ class SCategory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SPropertyField::className(), ['id_category' => 'id']);
     }
+
+    public function getImage()
+    {
+        return $this->hasOne(SCategoryImage::className(), ['id_category' => 'id']);
+    }
 }

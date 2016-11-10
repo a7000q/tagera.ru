@@ -21,13 +21,13 @@ class AppAsset extends AssetBundle
     public $js = [
         //'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js',
         //'theme/assets/bootstrap/js/bootstrap.min.js',
-        'theme/assets/js/owl.carousel.min.js',
+        //'theme/assets/js/owl.carousel.min.js',
         'theme/assets/js/jquery.matchHeight-min.js',
         'theme/assets/js/hideMaxListItem.js',
         'theme/assets/plugins/jquery.fs.scroller/jquery.fs.scroller.js',
         'theme/assets/plugins/jquery.fs.selecter/jquery.fs.selecter.js',
         'js/libs/jquery.blockUI.js',
-        'theme/assets/js/script.js',
+        //'theme/assets/js/script.js',
         'js/main/script.js'
     ];
     public $depends = [

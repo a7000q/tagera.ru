@@ -36,11 +36,12 @@ class UProducts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'id_category', 'date', 'id_city'], 'integer'],
+            [['id_user', 'id_category', 'date', 'id_city', 'status'], 'integer'],
             [['name', 'description', 'username', 'phone'], 'string', 'max' => 255],
             [['id_category'], 'exist', 'skipOnError' => true, 'targetClass' => SCategory::className(), 'targetAttribute' => ['id_category' => 'id']],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
             [['price'], 'number'],
+            [['name', 'username', 'phone', 'id_city', 'id_category'], 'required'],
         ];
     }
 
@@ -51,11 +52,16 @@ class UProducts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
+            'name' => 'Название',
+            'description' => 'Описание',
             'id_user' => 'Id User',
             'id_category' => 'Id Category',
-            'date' => 'Date',
+            'date' => 'Дата',
+            'price' => 'Цена',
+            'username' => 'Имя',
+            'phone' => 'Телефон',
+            'id_city' => 'Город',
+            'status' => 'Статус'
         ];
     }
 

@@ -24,5 +24,14 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'i18n' => [
+            'translations' => [
+                'file-input*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@vendor/2amigos/yii2-file-input-widget/src/messages',
+                    'sourceLanguage' => 'ru'
+                ],
+            ],
+        ],
     ],
 ];

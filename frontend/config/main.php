@@ -13,6 +13,14 @@ return [
     'language' => 'ru-RU',
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module',
+            // enter optional module parameters below - only if you need to
+            // use your own export download action or custom translation
+            // message source
+            //'downloadAction' => false,
+            // 'i18n' => []
+        ],
         'user' => [
             // following line will restrict access to admin controller from frontend application
             'as frontend' => 'dektrium\user\filters\FrontendFilter',
@@ -50,6 +58,9 @@ return [
                 'path'     => '/',
             ],
         ],
+        'geo' => [
+            'class' => \frontend\components\Geo\Geo::className()
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -83,15 +94,6 @@ return [
                     'clientId'     => '5659226',
                     'clientSecret' => 'J6IyUl9B6hwuUJK8LB6v',
                 ]
-            ],
-        ],
-        'i18n' => [
-            'translations' => [
-                'file-input*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@vendor/2amigos/yii2-file-input-widget/src/messages',
-                    'sourceLanguage' => 'ru'
-                ],
             ],
         ],
     ],

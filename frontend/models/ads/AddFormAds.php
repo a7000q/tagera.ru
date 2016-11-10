@@ -71,9 +71,10 @@ class AddFormAds extends Model
     public function rules()
     {
         return [
+            ['id_category', 'required', 'message' => 'Необходимо указать "Категорию"'],
             [['id_category', 'city'], 'integer'],
             [['name', 'description', 'username', 'phone'], 'string'],
-            [['name', 'username', 'phone', 'city', 'id_category'], 'required'],
+            [['name', 'username', 'phone', 'city'], 'required'],
             [['price'], 'number'],
             [['image1', 'image2', 'image3', 'image4', 'image5', 'image6'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg']
         ];
@@ -203,28 +204,23 @@ class AddFormAds extends Model
                 if ($value != "")
                 {
 
-                    if (!is_array($value)) {
-                        $field = Yii::createObject(AdsFields::className());
+                    $field = Yii::createObject(AdsFields::className());
+
+                    if (!is_array($value))
                         $field->setAttributes([
                             'id_product' => $product->id,
                             'id_field' => $id_field,
                             'value' => $value
                         ]);
+                    else
+                        $field->setAttributes([
+                            'id_product' => $product->id,
+                            'id_field' => $id_field,
+                            'value' => json_encode($value)
+                        ]);
 
-                        $field->save();
-                    } else {
-                        foreach ($value as $val) {
-                            $field = Yii::createObject(AdsFields::className());
-                            $field->setAttributes([
-                                'id_product' => $product->id,
-                                'id_field' => $id_field,
-                                'value' => $val
-                            ]);
 
-                            $field->save();
-                        }
-                    }
-
+                    $field->save();
                 }
             }
 

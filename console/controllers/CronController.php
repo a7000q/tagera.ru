@@ -14,9 +14,7 @@ class CronController extends Controller
 
         foreach ($uncheckeds as $unchecked)
         {
-            $unchecked->product->status = 10;
-            $unchecked->product->save();
-
+            $unchecked->product->activate();
             $unchecked->delete();
         }
     }

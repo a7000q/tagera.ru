@@ -6,9 +6,12 @@ use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
+\frontend\assets\CarouselAsset::register($this);
 $this->title = "Новое объявление";
 
 ?>
+
+
 <div id="domMessage" style="display:none;">
     <h1><img src="/img/loading.gif"> Сабр!</h1>
 </div>
@@ -21,6 +24,7 @@ $this->title = "Новое объявление";
             <div class="row">
                 <div class="col-sm-12">
                     <?Pjax::begin()?>
+                        <?= $this->render('/user/_alert', ['module' => Yii::$app->getModule('user')]) ?>
                         <?$form = ActiveForm::begin([
                             'fieldConfig' => [
                                 'template' => '<label class="col-md-3 control-label">{label}</label><div class="col-md-8">{input}{error}</div>'
@@ -34,7 +38,7 @@ $this->title = "Новое объявление";
                             'enableClientValidation' => false
                         ])?>
                             <fieldset style="overflow: hidden;">
-                                <div class="form-group">
+                                <div class="form-group required <?=(isset($model->errors['id_category']))?"has-error":""?>">
                                     <label class="col-md-3 control-label">Категория</label>
                                     <div class="col-md-8">
                                         <?
@@ -53,6 +57,13 @@ $this->title = "Новое объявление";
                                         echo $this->render('category', ['form' => $form, 'model' => $model]);
                                         Modal::end();
                                         ?>
+                                        <?if (isset($model->errors['id_category'])):?>
+                                            <div class="help-block" style="margin-top: 0;">
+                                                <?foreach ($model->errors['id_category'] as $error):?>
+                                                    <?=$error;?>
+                                                <?endforeach;?>
+                                            </div>
+                                        <?endif;?>
                                         <?=Html::activeHiddenInput($model, 'id_category', ['id' => 'id_category'])?>
                                     </div>
                                 </div>

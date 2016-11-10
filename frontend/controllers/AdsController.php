@@ -3,12 +3,19 @@
 namespace frontend\controllers;
 
 use frontend\models\ads\AddFormAds;
+use frontend\models\ads\Ads;
+use frontend\models\ads\AdsImages;
+use frontend\models\ads\UpdateFormAds;
 use frontend\models\category\Category;
-use yii\base\Controller;
+use kartik\helpers\Html;
+use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 use Yii;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+
 
 
 class AdsController extends Controller
@@ -25,6 +32,12 @@ class AdsController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -56,6 +69,11 @@ class AdsController extends Controller
                 return $this->render('success');
             }
 
+            if ($model->errors)
+            {
+                Yii::$app->getSession()->setFlash('danger', $this->constructError($model->errors));
+            }
+
         }
         return $this->render('add', ['model' => $model]);
     }
@@ -72,4 +90,78 @@ class AdsController extends Controller
 
         return $this->renderPartial('children-category', ['category' => $category]);
     }
+
+    public function actionDelete($id)
+    {
+        $product = $this->findProduct($id);
+        $product->delete();
+
+        $this->redirect(['/user/settings/ads']);
+    }
+
+    public function actionUpdate($id)
+    {
+        $product = $this->findProduct($id);
+        $model = UpdateFormAds::findOne($id);
+
+        $post = Yii::$app->request->post();
+        if (isset($post['add-image']))
+        {
+            $model->image = UploadedFile::getInstance($model, "image");
+            $model->saveImage();
+        }
+
+        if (isset($post["save-btn"]))
+        {
+            $model->load($post);
+            $model->loadFields($post);
+
+            if ($model->validate()) {
+                $model->save();
+                Yii::$app->getSession()->setFlash('success',
+                    "Альхамдулиллях! Ваше объявление сохранено. В ближайшее время мы перепроверим Ваше объявление и добавим его на сайт!"
+                );
+                $model->recheck();
+                return $this->redirect(['user/settings/ads']);
+            }
+        }
+
+        return $this->render('update', ['product' => $product, 'model' => $model]);
+    }
+
+    public function actionDelImage()
+    {
+        $post = Yii::$app->request->post();
+        $id = ArrayHelper::getValue($post, 'id');
+        $image = AdsImages::findOne($id);
+        $this->findProduct($image->id_product);
+
+        if ($image) {
+            $image->delete();
+            return "success";
+        }
+
+        return "success";
+    }
+
+    private function findProduct($id)
+    {
+        $product = Ads::find()->where(['id' => $id])->andWhere(['id_user' => Yii::$app->user->id])->one();
+
+        if ($product)
+            return $product;
+        else
+            throw new NotFoundHttpException('Ошибочка! Вам сюда нельзя или данной страницы не существует.');
+    }
+
+    private function constructError($errors)
+    {
+        foreach ($errors as $error)
+            $err[] = $error[0];
+
+        $txt = Html::ul($err);
+
+        return $txt;
+    }
+
 }

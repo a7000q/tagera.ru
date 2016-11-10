@@ -43,11 +43,14 @@ class UFiles extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUProductImages()
+
+    public function beforeDelete()
     {
-        return $this->hasMany(UProductImages::className(), ['id_file' => 'id']);
+        if (parent::beforeDelete()) {
+            unlink(Yii::getAlias('@frontend/web/').$this->src);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

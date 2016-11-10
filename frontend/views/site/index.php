@@ -2,52 +2,67 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Сайт бесплатных объявлений для мусульман';
+use yii\helpers\ArrayHelper;
+use kartik\helpers\Html;
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+<div class="intro" style="background-image: url('/theme/images/bg3.jpg');">
+    <div class="dtable hw100">
+        <div class="dtable-cell hw100">
+            <div class="container text-center">
+                <h1 class="intro-title animated fadeInDown"> Объявления для мусульман </h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+                <p class="sub animateme fittext3 animated fadeIn">Мы стараемся, чтобы вы нашли, иншаАллах!</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+                <div class="row search-row animated fadeInUp">
+                    <div class="col-lg-5 col-sm-5 search-col relative locationicon">
+                        <i class="icon-location-2 icon-append"></i>
+                        <?=Html::button(Yii::$app->geo->cityName, [
+                            'class' => 'form-control locinput input-rel searchtag-input has-icon',
+                            'onclick' => 'showModal();',
+                            'style' => 'text-align: left;'
+                        ])?>
 
-    <div class="body-content">
+                    </div>
+                    <div class="col-lg-6 col-sm-6 search-col relative"><i class="icon-docs icon-append"></i>
+                        <input type="text" name="ads" class="form-control has-icon"
+                               placeholder="Введите, что Вас интересует..." value="">
+                    </div>
+                    <div class="col-lg-1 col-sm-1 search-col">
+                        <button class="btn btn-primary btn-search btn-block"><i
+                                class="icon-search"></i><strong></strong></button>
+                    </div>
+                </div>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
             </div>
         </div>
+    </div>
+</div>
 
+<div class="main-container">
+    <div class="container">
+        <div class="col-lg-12 content-box ">
+            <div class="row row-featured row-featured-category">
+                <div class="col-lg-12  box-title no-border">
+                    <div class="inner"><h2><span>Поиск по</span>
+                            Категориям </h2>
+                    </div>
+                </div>
+
+                <?foreach ($categoryes as $category):?>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+                        <a href="#"><img src="<?=ArrayHelper::getValue($category, 'image.file.src')?>" class="img-responsive" alt="<?=$category->name?>">
+                            <h6> <?=$category->name?> </h6></a>
+                    </div>
+                <?endforeach;?>
+
+
+
+
+            </div>
+
+
+        </div>
     </div>
 </div>

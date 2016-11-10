@@ -54,6 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Поля',
                 'content' => $this->render('fields', ['dataProvider' => $model->fieldsDataProvider]),
+            ],
+            [
+                'label' => 'Фото',
+                'content' => $this->render('photo', ['model' => $model]),
             ]
         ]
     ]);
