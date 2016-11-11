@@ -30,7 +30,8 @@
         "himiklab/yii2-recaptcha-widget": "*",
         "kartik-v/yii2-widget-depdrop": "@dev",
         "2amigos/yii2-file-input-widget": "~1.0",
-        "kartik-v/yii2-dialog": "*"
+        "kartik-v/yii2-dialog": "*",
+        "zelenin/yii2-slug-behavior": "~1.5.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

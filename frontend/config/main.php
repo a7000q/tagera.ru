@@ -77,6 +77,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<slug>' => 'category'
             ],
         ],
         'view' => [

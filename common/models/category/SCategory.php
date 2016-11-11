@@ -3,6 +3,7 @@
 namespace common\models\category;
 
 use Yii;
+use Zelenin\yii\behaviors\Slug;
 
 /**
  * This is the model class for table "s_category".
@@ -24,6 +25,24 @@ class SCategory extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 's_category';
+    }
+
+    public function behaviors()
+    {
+        return [
+            'slug' => [
+                'class' => Slug::className(),
+                'slugAttribute' => 'slug',
+                'attribute' => 'name',
+                // optional params
+                'ensureUnique' => true,
+                'replacement' => '-',
+                'lowercase' => true,
+                'immutable' => false,
+                // If intl extension is enabled, see http://userguide.icu-project.org/transforms/general.
+                'transliterateOptions' => 'Russian-Latin/BGN; Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC;'
+            ]
+        ];
     }
 
     /**
@@ -82,4 +101,6 @@ class SCategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(SCategoryImage::className(), ['id_category' => 'id']);
     }
+
+
 }

@@ -5,9 +5,11 @@ namespace frontend\models\category;
 
 use common\models\category\SCategory;
 use yii\helpers\ArrayHelper;
+use Zelenin\yii\behaviors\Slug;
 
 class Category extends SCategory
 {
+
     public function getChildrens()
     {
         return $this->hasMany(Category::className(), ['id_parent' => 'id']);
@@ -71,4 +73,18 @@ class Category extends SCategory
 
         return $result;
     }
+
+    public static function getAllForMenu()
+    {
+        $categoryes = Category::find()->where(['id_parent' => null])->all();
+
+        return ArrayHelper::map($categoryes, 'slug', 'name');
+    }
+
+    public static function getGeneralAll()
+    {
+        return Category::find()->where(['id_parent' => null])->all();
+    }
+
+
 }

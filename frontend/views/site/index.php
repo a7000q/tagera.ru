@@ -31,7 +31,7 @@ use kartik\helpers\Html;
                     </div>
                     <div class="col-lg-1 col-sm-1 search-col">
                         <button class="btn btn-primary btn-search btn-block"><i
-                                class="icon-search"></i><strong></strong></button>
+                                class="icon-search"></i><strong>&nbsp;</strong></button>
                     </div>
                 </div>
 
