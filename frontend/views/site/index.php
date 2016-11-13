@@ -57,7 +57,7 @@ CarouselAsset::register($this);
 
                 <?foreach ($categoryes as $category):?>
                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
-                        <a href="#"><img src="<?=ArrayHelper::getValue($category, 'image.file.src')?>" class="img-responsive" alt="<?=$category->name?>">
+                        <a href="/<?=$category->slug?>"><img src="<?=ArrayHelper::getValue($category, 'image.file.src')?>" class="img-responsive" alt="<?=$category->name?>">
                             <h6> <?=$category->name?> </h6></a>
                     </div>
                 <?endforeach;?>
