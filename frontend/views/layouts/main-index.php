@@ -74,16 +74,14 @@ AppAsset::register($this);
     <div class="footer" id="footer">
         <div class="container">
             <ul class=" pull-left navbar-link footer-nav">
-                <li><a href="index.html"> Home </a> <a href="about-us.html"> About us </a> <a href="terms-conditions.html"> Terms and
-                    Conditions </a> <a href="#"> Privacy Policy </a> <a href="contact.html"> Contact us </a> <a
-                        href="faq.html"> FAQ </a>
+                <li>
+
+                </li>
             </ul>
             <ul class=" pull-right navbar-link footer-nav">
-                <li> &copy; 2015 BootClassified</li>
+                <li> &copy; 2016 vsehalal.ru</li>
             </ul>
         </div>
-
-    </div>
     <!-- /.footer -->
 </div>
 

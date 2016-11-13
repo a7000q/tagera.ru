@@ -7,6 +7,7 @@ use common\models\products\UProducts;
 use frontend\models\category\Category;
 use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\Url;
 
 class Ads extends UProducts
 {
@@ -94,5 +95,40 @@ class Ads extends UProducts
     {
         $this->status = 10;
         $this->save();
+    }
+
+    public function getCountImages()
+    {
+        $images = $this->getImages();
+        return $images->count();
+    }
+
+    public function getUrlProduct()
+    {
+        $category = $this->category->slug;
+        $name = $this->slug;
+
+        return Url::toRoute(['/'.$category."/".$name]);
+    }
+
+    public function getBreadcrumbs()
+    {
+        $category = $this->category;
+
+        while ($category)
+        {
+            $result[] = [
+                'label' => $category->name,
+                'url' => Url::toRoute(['/'.$category->slug])
+            ];
+
+            $category = $category->parent;
+        }
+
+        $result = array_reverse($result);
+
+        $result[] = $this->name;
+
+        return $result;
     }
 }

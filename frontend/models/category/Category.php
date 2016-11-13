@@ -4,6 +4,9 @@ namespace frontend\models\category;
 
 
 use common\models\category\SCategory;
+use frontend\models\ads\Ads;
+use yii\data\ActiveDataProvider;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use Zelenin\yii\behaviors\Slug;
 
@@ -57,7 +60,7 @@ class Category extends SCategory
         return $result;
     }
 
-    private function getCategoryChain()
+    public function getCategoryChain()
     {
         $category = $this;
 
@@ -84,6 +87,33 @@ class Category extends SCategory
     public static function getGeneralAll()
     {
         return Category::find()->where(['id_parent' => null])->all();
+    }
+
+    public function getIdAllChild()
+    {
+        $result[] = $this->id;
+        foreach ($this->childrens as $child)
+        {
+            $r = $child->getIdAllChild();
+            $result = ArrayHelper::merge($result, $r);
+        }
+
+        return $result;
+    }
+
+    public function getCountProducts($query = null)
+    {
+        $ids_category = $this->getIdAllChild();
+
+        if (!$query)
+            $result = Ads::find()->where(['id_category' => $ids_category])->count();
+        else
+        {
+            $result = clone $query;
+            $result = $result->andWhere(['id_category' => $ids_category])->count();
+        }
+
+        return $result;
     }
 
 

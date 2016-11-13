@@ -21,4 +21,9 @@ class User extends \common\models\user\User
 
         return $this->username;
     }
+
+    public static function CountUsers()
+    {
+        return User::find()->where(['!=', 'confirmed_at', ""])->count();
+    }
 }

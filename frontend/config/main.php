@@ -71,13 +71,15 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'page/error',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<slug>' => 'category'
+                'ads/<action>' => 'ads/<action>',
+                '<slug>' => 'category',
+                '<category_slug>/<item_slug>' => 'category/item'
             ],
         ],
         'view' => [

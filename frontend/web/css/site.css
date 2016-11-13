@@ -13,3 +13,26 @@
     font-weight: bold !important;
 }
 
+.empty{
+    padding: 10px;
+    font-weight: bold;
+}
+
+.category-list-table{
+    display: flex !important;
+    width:100%;
+    margin-bottom: 10px;
+}
+
+.category-list-name{
+    display: table-cell;
+    width: 90%;
+}
+
+.category-list-count{
+    display: table-cell;
+    width: 10%;
+    text-align: right;
+}
+
+

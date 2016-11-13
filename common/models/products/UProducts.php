@@ -6,6 +6,7 @@ use Yii;
 use common\models\category\SCategory;
 use common\models\user\User;
 use common\models\geo\City;
+use Zelenin\yii\behaviors\Slug;
 
 /**
  * This is the model class for table "u_products".
@@ -28,6 +29,24 @@ class UProducts extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'u_products';
+    }
+
+    public function behaviors()
+    {
+        return [
+            'slug' => [
+                'class' => Slug::className(),
+                'slugAttribute' => 'slug',
+                'attribute' => 'name',
+                // optional params
+                'ensureUnique' => true,
+                'replacement' => '-',
+                'lowercase' => true,
+                'immutable' => false,
+                // If intl extension is enabled, see http://userguide.icu-project.org/transforms/general.
+                'transliterateOptions' => 'Russian-Latin/BGN; Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC;'
+            ]
+        ];
     }
 
     /**

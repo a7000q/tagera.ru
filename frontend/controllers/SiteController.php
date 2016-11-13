@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\products\UProducts;
+use frontend\models\ads\Ads;
 use frontend\models\category\Category;
 use Yii;
 use yii\base\InvalidParamException;
@@ -76,8 +78,25 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $categoryes = Category::find()->where(['id_parent' => null])->all();
+        $items = $this->findItems();
 
-        return $this->render('index', ['categoryes' => $categoryes]);
+        return $this->render('index', ['categoryes' => $categoryes, 'items' => $items]);
+    }
+
+    private function findItems()
+    {
+        $result = Ads::find();
+
+        $result = $result->where(['status' => 10]);
+
+        if (Yii::$app->session->get('geo'))
+            $result = $result->andWhere(['id_city' => Yii::$app->session->get('geo')]);
+
+        $result = $result->orderBy('date')->limit(20);
+
+        $result = $result->all();
+
+        return $result;
     }
 
     /**

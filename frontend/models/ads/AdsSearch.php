@@ -6,6 +6,8 @@ use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use frontend\models\category\Category;
 use yii\helpers\Url;
+use yii\data\ActiveDataProvider;
+use Yii;
 
 class AdsSearch extends Model
 {
@@ -14,6 +16,8 @@ class AdsSearch extends Model
 
     public $p1;
     public $p2;
+
+    public $_dataProvider;
 
     public function rules()
     {
@@ -28,7 +32,31 @@ class AdsSearch extends Model
 
     public function search()
     {
+        $query = Ads::find();
 
+        $query = $query->where(['status' => 10]);
+
+        if ($this->search_text) {
+            $query = $query->andWhere(['like', 'name', $this->search_text]);
+            $query = $query->orWhere(['like', 'description', $this->search_text]);
+        }
+
+        if ($this->categoryObject) {
+            $query = $query->andWhere(['in', 'id_category', $this->categoryObject->getIdAllChild()]);
+        }
+
+        if ($this->p1)
+            $query = $query->andWhere(['>=', 'price', $this->p1]);
+
+        if ($this->p2)
+            $query = $query->andWhere(['<=', 'price', $this->p2]);
+
+        if (Yii::$app->session->get('geo'))
+            $query = $query->andWhere(['id_city' => Yii::$app->session->get('geo')]);
+
+        $this->_dataProvider =  new ActiveDataProvider([
+            'query' => $query
+        ]);
     }
 
     public function getCategoryObject()
@@ -51,7 +79,7 @@ class AdsSearch extends Model
             $params['p1'] = $this->p1;
 
         if ($this->p2)
-            $params['p1'] = $this->p2;
+            $params['p2'] = $this->p2;
 
         return Url::toRoute($params);
     }
@@ -66,6 +94,16 @@ class AdsSearch extends Model
     {
         $this->p1 = false;
         $this->p2 = false;
+    }
+
+    public function loadGet($params)
+    {
+        $this->setAttributes([
+            'category_slug' => ArrayHelper::getValue($params, "slug"),
+            'search_text' => ArrayHelper::getValue($params, "search"),
+            'p1' => ArrayHelper::getValue($params, "p1"),
+            'p2' => ArrayHelper::getValue($params, "p2")
+        ]);
     }
 
 }

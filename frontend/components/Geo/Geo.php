@@ -10,6 +10,8 @@ use yii\helpers\ArrayHelper;
 
 class Geo extends Widget
 {
+    public $id_city;
+
     public function init()
     {
         parent::init();
@@ -17,10 +19,13 @@ class Geo extends Widget
         $session = Yii::$app->session;
         $session->open();
 
+        $this->id_city = $session->get('geo');
+
         if (isset($post['setGeo']))
         {
             $id_city = ArrayHelper::getValue($post, 'geo_id_city');
             $session->set('geo', $id_city);
+            Yii::$app->response->refresh();
         }
     }
 
@@ -33,6 +38,7 @@ class Geo extends Widget
     public function getCityName()
     {
         $id_city = Yii::$app->session->get('geo');
+
         if ($id_city){
             $city = City::findOne($id_city);
 
