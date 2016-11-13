@@ -62,6 +62,8 @@ else
                                     <?=$this->render('category-list', ['model' => $model])?>
                                 <?elseif ($model->categoryObject->childrens):?>
                                     <?=$this->render('sub-category-list', ['model' => $model])?>
+                                <?elseif (!$model->categoryObject->childrens && !$model->categoryObject->parent):?>
+                                    <?=$this->render('category-list-finish', ['model' => $model])?>
                                 <?else:?>
                                     <?=$this->render('sub-sub-category-list', ['model' => $model])?>
                                 <?endif;?>
