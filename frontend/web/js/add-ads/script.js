@@ -66,9 +66,19 @@ function changeCategory(id_category) {
     $('#category-modal').modal("toggle");
 }
 
+
+
 $(document).ajaxStart(function () {
-    $.blockUI({ message: $('#domMessage') });
+    showDialog();
 });
 
 $(document).ajaxStop($.unblockUI);
+
+function showDialog() {
+    $.blockUI({ message: dlgElement});
+}
+
+var dlgElement = $("#domMessage");
+
+
 

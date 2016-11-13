@@ -9,6 +9,8 @@ use yii\widgets\Pjax;
 \frontend\assets\CarouselAsset::register($this);
 $this->title = "Новое объявление";
 
+$this->registerJsFile('/js/add-ads/script.js',  ['position' => yii\web\View::POS_END, 'depends' => \frontend\assets\AppAsset::className()]);
+
 ?>
 
 

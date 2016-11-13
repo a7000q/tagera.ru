@@ -1,5 +1,4 @@
 <?
-$this->registerJsFile('/js/add-ads/script.js',  ['position' => yii\web\View::POS_END, 'depends' => \frontend\assets\AppAsset::className()]);
 $data_item = 1;
 ?>
 
