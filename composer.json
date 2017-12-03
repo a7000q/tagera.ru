@@ -31,7 +31,8 @@
         "kartik-v/yii2-widget-depdrop": "@dev",
         "2amigos/yii2-file-input-widget": "~1.0",
         "kartik-v/yii2-dialog": "*",
-        "zelenin/yii2-slug-behavior": "*"
+        "zelenin/yii2-slug-behavior": "*",
+        "moonlandsoft/yii2-phpexcel": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

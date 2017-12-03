@@ -66,7 +66,10 @@ class AdsController extends Controller
             if (isset($post['save-btn']) && $model->validate())
             {
                 $model->saveProduct();
-                return $this->render('success');
+                Yii::$app->getSession()->setFlash('success',
+                    "Альхамдулиллях! Ваше объявление сохранено. В ближайшее время мы перепроверим Ваше объявление и добавим его на сайт!"
+                );
+                return $this->redirect('/user/settings/ads');
             }
 
             if ($model->errors)

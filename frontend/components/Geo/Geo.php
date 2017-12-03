@@ -46,6 +46,6 @@ class Geo extends Widget
                 return $city->name;
         }
 
-        return "Вся Россия";
+        return "Вся Турция";
     }
 }

@@ -2,6 +2,7 @@
 
 use kartik\grid\GridView;
 use kartik\helpers\Html;
+use yii\bootstrap\Alert;
 
 
 $this->title = "Мои объявления";
