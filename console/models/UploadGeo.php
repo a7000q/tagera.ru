@@ -9,6 +9,7 @@ use common\models\products\UProducts;
 use frontend\models\user\Profile;
 use moonland\phpexcel\Excel;
 use yii\base\Model;
+use yii\helpers\StringHelper;
 
 class UploadGeo extends Model
 {
@@ -40,7 +41,7 @@ class UploadGeo extends Model
                 $region->save();
             }
 
-            $city_name = explode(" ", $item["B"]);
+            $city_name = StringHelper::explode($item["B"], " ");
             print_r($city_name);
             $city = new City([
                 'id_region' => $region->id,
