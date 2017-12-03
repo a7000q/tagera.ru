@@ -41,6 +41,7 @@ class UploadGeo extends Model
             }
 
             $city_name = explode(" ", $item["B"]);
+            print_r($city_name);
             $city = new City([
                 'id_region' => $region->id,
                 'name' => $city_name[0]
