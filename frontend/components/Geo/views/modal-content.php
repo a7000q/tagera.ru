@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
             <div class="col-md-12">
                 <?=Select2::widget([
-                    'data' => ArrayHelper::merge(['Вся Россия'], \common\models\geo\City::getAllArray()),
+                    'data' => ArrayHelper::merge(['Вся Турция'], \common\models\geo\City::getAllArray()),
                     'name' => 'geo_id_city',
                     'id' => 'select-city',
                     'value' => (\Yii::$app->session->get('geo'))?\Yii::$app->session->get('geo'):"",
