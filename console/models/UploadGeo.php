@@ -42,10 +42,13 @@ class UploadGeo extends Model
             }
 
             $city_name = StringHelper::explode($item["B"], " ");
+            $city_name = $city_name[0];
+            if (strpos("(", $city_name))
+                $city_name = substr($city_name, strpos("(", $city_name));
             print_r($city_name);
             $city = new City([
                 'id_region' => $region->id,
-                'name' => $city_name[0]
+                'name' => $city_name
             ]);
             $city->save();
 
